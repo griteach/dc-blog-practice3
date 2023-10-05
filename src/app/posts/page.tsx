@@ -1,7 +1,9 @@
+import FilterablePosts from "../components/FilterablePosts";
 import { getAllPosts } from "../service/posts";
 
 export default async function PostPage() {
   const posts = await getAllPosts();
+  const category = [...new Set(posts.map((post) => post.category))];
 
-  return <h1>PostPage</h1>;
+  return <FilterablePosts posts={posts} categories={category} />;
 }
